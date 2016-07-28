@@ -1,0 +1,32 @@
+.accordion-gallery {
+    padding: 20px 0;
+}
+.accordion-gallery:after {
+    content: '';
+    display: block;
+    clear: both;
+    width: 100%;
+}
+.accordion-gallery li {
+    display: inline-block;
+    float: left;
+    min-height: 100px;
+    list-style: none;
+    position: relative;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-transition: width .4s ease;
+    -moz-transition: width .4s ease;
+    -ms-transition: width .4s ease;
+    -o-transition: width .4s ease;
+    transition: width .4s ease;
+}
+.accordion-gallery li .title {
+    position: absolute;
+    opacity: 0;
+}
+.accordion-gallery li img {
+    display: none;
+}
+
