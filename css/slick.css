@@ -99,6 +99,7 @@
 .slick-initialized .slick-slide
 {
     display: block;
+    outline: none;
 }
 .slick-loading .slick-slide
 {
@@ -140,98 +141,37 @@
 {
     font-size: 0;
     line-height: 0;
-
     position: absolute;
     top: 50%;
-
     display: block;
 
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     padding: 0;
     -webkit-transform: translate(0, -50%);
+    -moz-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
+    -o-transform: translate(0, -50%);
     transform: translate(0, -50%);
-
     cursor: pointer;
-
     color: transparent;
     border: none;
     outline: none;
-    background: transparent;
-}
-.slick-prev:hover,
-.slick-prev:focus,
-.slick-next:hover,
-.slick-next:focus
-{
-    color: transparent;
-    outline: none;
-    background: transparent;
-}
-.slick-prev:hover:before,
-.slick-prev:focus:before,
-.slick-next:hover:before,
-.slick-next:focus:before
-{
-    opacity: 1;
-}
-.slick-prev.slick-disabled:before,
-.slick-next.slick-disabled:before
-{
-    opacity: .25;
-}
+    background: url(../images/arrow-right.svg) center center no-repeat;
+    background-size: cover;
 
-.slick-prev:before,
-.slick-next:before
-{
-    font-family: 'slick';
-    font-size: 20px;
-    line-height: 1;
-
-    opacity: .75;
-    color: white;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
-
-.slick-prev
-{
-    left: -25px;
+.slick-prev {
+    left: -5px;
+    -webkit-transform: translate(0, -50%) rotate(180deg);
+    -moz-transform: translate(0, -50%) rotate(180deg);
+    -ms-transform: translate(0, -50%) rotate(180deg);
+    -o-transform: translate(0, -50%) rotate(180deg);
+    transform: translate(0, -50%) rotate(180deg);
 }
-[dir='rtl'] .slick-prev
-{
-    right: -25px;
-    left: auto;
+.slick-next {
+    right: -5px;
 }
-.slick-prev:before
-{
-    content: '←';
-}
-[dir='rtl'] .slick-prev:before
-{
-    content: '→';
-}
-
-.slick-next
-{
-    right: -25px;
-}
-[dir='rtl'] .slick-next
-{
-    right: auto;
-    left: -25px;
-}
-.slick-next:before
-{
-    content: '→';
-}
-[dir='rtl'] .slick-next:before
-{
-    content: '←';
-}
-
 /* Dots */
 .slick-dotted.slick-slider
 {

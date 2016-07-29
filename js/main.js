@@ -4,37 +4,92 @@
 
 
 $(document).ready(function() {
-    $('.accordion-gallery').each(function (i, item) {
-        var $accGallery = $(item),
-            $accGalleryLi = $accGallery.find('li'),
-            quantity = $accGalleryLi.length;
-        
-        $accGalleryLi.each(function (i, item) {
-            var $li = $(item),
-                $img = $li.find('img'),
-                src = $img.attr('src');
-            $li.css('background-image', 'url('+src+ ')');
-        });
+    var $galleryWrap = $('.gallery-wrap');
+    if ($galleryWrap.length > 0) {
+        if ( $(window).width() > 767) {
+            $('.accordion-gallery').each(function (i, item) {
+                var $accGallery = $(item),
+                    $accGalleryLi = $accGallery.find('li'),
+                    quantity = $accGalleryLi.length;
 
+                /* start set images to backgrounds */
+                $accGalleryLi.each(function (i, item) {
+                    var $li = $(item),
+                        $img = $li.find('img'),
+                        src = $img.attr('src');
+                    $li.css('background-image', 'url('+src+ ')');
+                });
+                /* end set images to backgrounds */
 
-        var imageW = $accGalleryLi.find('img').width(),
-            imageH = $accGalleryLi.find('img').height(),
-            imagePercentageW = (imageW/$accGallery.width())*100,
-            otherPercentageWith = (100-imagePercentageW)/(quantity-1);
+                /* start find images width/height */
+                var imageW = 0, imageH = 0;
+                $accGalleryLi.find('img').each(function (i, item) {
+                    var $item = $(item);
+                    if ($item.width() > imageW) {
+                        imageW = $item.width();
+                    }
+                    if ($item.height() > imageH) {
+                        imageH = $item.height();
+                    }
+                });
+                /* end find images width/height */
+                var imagePercentageW = (imageW/$accGallery.width())*100,
+                    otherPercentageWith = (100-imagePercentageW)/(quantity-1);
+                var liWidth = 100/quantity;
+                $accGalleryLi.css({width: liWidth + '%', height: imageH});
+                $accGalleryLi.on('click', function () {
+                    var $this = $(this);
+                    $accGalleryLi.css('width', otherPercentageWith + '%').removeClass('active');
+                    $this.css('width', imagePercentageW + '%').addClass('active');
+                });
+                $accGalleryLi.eq(0).click();
+            });
+        } else {
+            $('.accordion-gallery').each(function (i, item) {
+                var $accGallery = $(item),
+                    $accGalleryLi = $accGallery.find('li'),
+                    quantity = $accGalleryLi.length;
 
-        console.log($accGallery.width());
-        console.log(imageW, imagePercentageW, otherPercentageWith);
+                /* start set images to backgrounds */
+                $accGalleryLi.each(function (i, item) {
+                    var $li = $(item),
+                        $img = $li.find('img'),
+                        src = $img.attr('src');
+                    $li.css('background-image', 'url('+src+ ')');
+                });
+                /* end set images to backgrounds */
 
+                /* start find images width/height */
+                var imageW = 0, imageH = 0;
+                $accGalleryLi.find('img').each(function (i, item) {
+                    var $item = $(item);
+                    if ($item.width() > imageW) {
+                        imageW = $item.width();
+                    }
+                    if ($item.height() > imageH) {
+                        imageH = $item.height();
+                    }
+                });
+                /* end find images width/height */
 
-        var liWidth = 100/quantity;
-        $accGalleryLi.css({width: liWidth + '%', height: imageH});
+                var defaultHeight = '60px';
 
-        $accGalleryLi.on('click', function () {
-            var $this = $(this);
-            $accGalleryLi.css('width', otherPercentageWith + '%');
-            $this.css('width', imagePercentageW + '%');
-        });
+                $accGalleryLi.css({'height': defaultHeight});
 
-        $accGalleryLi.eq(0).click();
-    })
+                $accGalleryLi.on('click', function () {
+                    var $this = $(this);
+                    $accGalleryLi.css({'height': defaultHeight}).removeClass('active');
+                    $this.css({'height': imageH}).addClass('active');
+                });
+                $accGalleryLi.eq(0).click();
+            });
+        }
+
+        if ($galleryWrap.children('div').length > 1) {
+            $galleryWrap.slick({
+                adaptiveHeight: true
+            });
+        }
+    }
+
 });
